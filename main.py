@@ -40,7 +40,7 @@ if __name__ == "__main__":
     postcode_no_space = postcode.replace(" ", "")
     endpoint = f"uk/restaurants/enriched/bypostcode/{postcode_no_space}"
     endpoint_url = base_url + endpoint
-    
+
     data = get_data(endpoint_url=endpoint_url, headers=headers)
     restaurants_list = parse_restaurants(data=data, top_n=10)
     restaurants_df = pd.DataFrame(restaurants_list)
