@@ -1,4 +1,5 @@
 import requests
+import json
 
 # headers used in the Take it away UK restaurants endpoint
 headers = {
@@ -11,3 +12,20 @@ headers = {
 def get_data(endpoint_url: str, headers: dict):
     response = requests.get(url=endpoint_url, headers=headers)
     return response.json()
+
+def parse_restaurants(data: list[dict], top_n: int):
+    restaurants = data["restaurants"][:top_n]
+    restaurants_list = []
+    for r in restaurants:
+        name = r.get("name")
+        cuisines = ", ".join(c["name"] for c in r.get("cuisines", []))
+        rating = r.get("rating", {}).get("starRating", "")
+        address_obj = r.get("address", {})
+        address = f"{address_obj.get("firstLine", "")}, {address_obj.get("city", "")}"
+        restaurants_list.append({
+            "name": name,
+            "cuisines": cuisines,
+            "rating": rating,
+            "address": address
+        })
+    return restaurants_list
