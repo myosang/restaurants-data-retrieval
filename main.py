@@ -16,7 +16,9 @@ def get_data(endpoint_url: str, headers: dict):
     return response.json()
 
 # Parse top N data
-def parse_restaurants(data: list[dict], top_n: int):
+def parse_restaurants_data(data: list[dict], top_n: int):
+    # TODO: Improve: Top_n complete entries are returned. Skip the incomplete data entry.
+    # TODO: Improve: Make sure the rating is returned as number.
     restaurants = data["restaurants"][:top_n]
     restaurants_list = []
     for r in restaurants:
@@ -24,7 +26,7 @@ def parse_restaurants(data: list[dict], top_n: int):
         cuisines = ", ".join(c["name"] for c in r.get("cuisines", []))
         rating = r.get("rating", {}).get("starRating", "")
         address_obj = r.get("address", {})
-        address = f"{address_obj.get("firstLine", "")}, {address_obj.get("city", "")}"
+        address = f"{address_obj.get('firstLine', '')}, {address_obj.get('city', '')}"
         restaurants_list.append({
             "name": name,
             "cuisines": cuisines,
@@ -35,13 +37,14 @@ def parse_restaurants(data: list[dict], top_n: int):
 
 if __name__ == "__main__":
     base_url = "https://uk.api.just-eat.io/discovery/"
-    # TODO: change postcode to be user input - availability
+    # TODO: Improve: Postcode can be given as argument by user.
     postcode = "L4 0TH"
     postcode_no_space = postcode.replace(" ", "")
     endpoint = f"uk/restaurants/enriched/bypostcode/{postcode_no_space}"
     endpoint_url = base_url + endpoint
 
     data = get_data(endpoint_url=endpoint_url, headers=headers)
-    restaurants_list = parse_restaurants(data=data, top_n=10)
+    restaurants_list = parse_restaurants_data(data=data, top_n=10)
     restaurants_df = pd.DataFrame(restaurants_list)
+    # TODO: Improve: user friendly display of the data.
     print(restaurants_df)
