@@ -1,4 +1,4 @@
-from main import parse_restaurants_data
+from parser import parse_restaurants_data
 
 def test_parse_restaurants_data_basic():
     mock_data = {
