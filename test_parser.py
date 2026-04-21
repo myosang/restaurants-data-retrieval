@@ -50,7 +50,7 @@ def test_parse_restaurants_data_missing_fields():
     assert len(result) == 1
     assert result[0]["name"] == "Unknown"
     assert result[0]["cuisines"] == ""
-    assert result[0]["rating"] == None
+    assert result[0]["rating"] is None
     assert result[0]["address"] == ", "
 
 def test_parse_restaurants_data_limit():
@@ -63,3 +63,8 @@ def test_parse_restaurants_data_limit():
     
     assert isinstance(result, list)
     assert len(result) == 10
+
+def test_parse_restaurants_data_empty():
+    result = parse_restaurants_data({}, 10)
+    
+    assert result == []
