@@ -1,6 +1,6 @@
 import requests
 
-# Headers used in the Take it away UK restaurants endpoint
+# Headers used in the Just Eat Take away UK restaurants endpoint
 headers = {
     "User-Agent": "Mozilla/5.0",
     "Accept": "application/json",
