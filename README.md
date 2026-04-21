@@ -67,6 +67,8 @@ If the project were extended:
 * Filter out incomplete data entries (e.g., missing rating)
 * Export results to CSV for further analysis or reporting
 * Improve project structure with dedicated folders for scalability
+* The API includes non-cuisine categories (e.g., "Deals", "Freebies", "Cheeky Tuesday") in the "cuisines" field. These could be filtered out or handled separately to ensure only actual cuisine types are displayed
+* Address formatting could be improved, as the city name may be duplicated in some cases. A cleaner formatting logic could remove duplicates and ensure consistent output
 # 🤖 Use of AI
 I used ChatGPT as an assistant during development:
 
