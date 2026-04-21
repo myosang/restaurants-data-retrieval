@@ -10,4 +10,5 @@ headers = {
 
 def get_data(endpoint_url: str, headers: dict):
     response = requests.get(url=endpoint_url, headers=headers)
+    response.raise_for_status()
     return response.json()
