@@ -1,5 +1,5 @@
 def parse_restaurants_data(data: dict, top_n: int):
-    restaurants = data["restaurants"][:top_n]
+    restaurants = data.get("restaurants", [])[:top_n]
     restaurants_list = []
     for r in restaurants:
         name = r.get("name")
