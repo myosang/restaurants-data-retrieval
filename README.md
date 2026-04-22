@@ -11,7 +11,7 @@ main.py          # Orchestration (API call → parsing → display)
 api.py           # Handles API requests
 parser.py        # Extracts and transforms restaurant data
 display.py       # Handles console output (Rich table)
-tests_parser.py  # Unit tests for parsing logic
+test_parser.py  # Unit tests for parsing logic
 requirements.txt
 ```
 # 🚀 How to run
@@ -45,7 +45,7 @@ The console-based interface was chosen to keep the solution lightweight and focu
 
 # 🔥 Challenges and Solution Approach
 ### 1. Unclear scope
-The task description was open-ended, especially regarding the interface. I defined the target user as a developer and focused on building a clean, functional prototype.
+The task description was open-ended, especially regarding processing of retrieved data. I defined the target user as a developer and focused on building a clean, functional prototype.
 ### 2. API access (403 error)
 Initial requests failed due to missing headers.
 I resolved this by inspecting browser requests (Chrome DevTools) and replicating required headers.
