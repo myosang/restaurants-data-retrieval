@@ -1,5 +1,5 @@
 def parse_restaurants_data(data: dict, top_n: int):
-    restaurants = data.get("restaurants", [])[:top_n]
+    restaurants = data.get("restaurants", [])
     restaurants_list = []
     for r in restaurants:
         name = r.get("name")
@@ -14,4 +14,14 @@ def parse_restaurants_data(data: dict, top_n: int):
             "rating": rating,
             "address": address
         })
-    return restaurants_list
+    sorted_restaurants_list = sort_restaurants_data(restaurants_list=restaurants_list)[:top_n]
+    return sorted_restaurants_list
+
+# Add sorting later
+def sort_restaurants_data(restaurants_list: list):
+    sorted_list = sorted(
+        restaurants_list,
+        key=lambda r: r["rating"] if r["rating"] is not None else -1,
+        reverse=True
+    )
+    return sorted_list
